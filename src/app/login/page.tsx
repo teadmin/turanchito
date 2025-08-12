@@ -48,55 +48,53 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Link href="/" className="flex items-center justify-center space-x-2 mb-6">
-          <div className="bg-blue-600 rounded-lg p-2">
-            <Home className="h-8 w-8 text-white" />
+        <Link href="/" className="flex items-center justify-center space-x-3 mb-6">
+          <div className="bg-[#E1F56E] rounded-xl p-2.5 shadow-lg">
+            <Home className="h-8 w-8 text-slate-900" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-blue-600">Miranchito</h1>
+            <h1 className="text-2xl font-bold text-slate-900">turanchito</h1>
           </div>
         </Link>
         
-        <h2 className="text-center text-3xl font-extrabold text-gray-900">
+        <h2 className="text-center text-3xl font-bold text-slate-900">
           Inicia sesión en tu cuenta
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
+        <p className="mt-2 text-center text-sm text-slate-600">
           ¿No tienes una cuenta?{' '}
-          <Link href="/registro" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link href="/registro" className="font-medium text-slate-900 hover:text-slate-700 underline decoration-[#E1F56E] decoration-2">
             Regístrate aquí
           </Link>
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white/90 backdrop-blur-sm py-8 px-4 shadow-xl border border-slate-200/60 sm:rounded-2xl sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
                 Email
               </label>
-              <div className="mt-1">
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="tu@email.com"
-                  disabled={loading}
-                />
-              </div>
+              <Input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="tu@email.com"
+                disabled={loading}
+              />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700 mb-2">
                 Contraseña
               </label>
-              <div className="mt-1 relative">
+              <div className="relative">
                 <Input
                   id="password"
                   name="password"
@@ -126,7 +124,7 @@ export default function LoginPage() {
               <div className="text-sm">
                 <Link 
                   href="/recuperar-password" 
-                  className="font-medium text-blue-600 hover:text-blue-500"
+                  className="font-medium text-slate-700 hover:text-slate-900 underline decoration-[#E1F56E] decoration-2"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
@@ -155,13 +153,13 @@ export default function LoginPage() {
             </div>
 
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-600">
                 Al iniciar sesión, aceptas nuestros{' '}
-                <Link href="/terminos" className="font-medium text-blue-600 hover:text-blue-500">
+                <Link href="/terminos" className="font-medium text-slate-700 hover:text-slate-900 underline decoration-[#E1F56E] decoration-1">
                   Términos de Servicio
                 </Link>{' '}
                 y{' '}
-                <Link href="/privacidad" className="font-medium text-blue-600 hover:text-blue-500">
+                <Link href="/privacidad" className="font-medium text-slate-700 hover:text-slate-900 underline decoration-[#E1F56E] decoration-1">
                   Política de Privacidad
                 </Link>
               </p>

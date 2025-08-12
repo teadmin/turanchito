@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/Button'
 import { propertyService, Property } from '@/lib/supabase'
 import { formatPrice } from '@/lib/utils'
 import { venezuelanCities } from '@/lib/venezuelan-cities-seo'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface SearchFiltersType {
   search?: string
@@ -28,6 +29,7 @@ export default function Home() {
   const [featuredProperties, setFeaturedProperties] = useState<Property[]>([])
   const [recentProperties, setRecentProperties] = useState<Property[]>([])
   const [loading, setLoading] = useState(true)
+  const { user, profile } = useAuth()
 
   useEffect(() => {
     fetchProperties()
@@ -109,6 +111,22 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Welcome Message for Logged In Users */}
+      {user && profile && (
+        <section className="py-8 bg-gradient-to-r from-[#E1F56E]/20 to-lime-100/20 border-b border-lime-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <p className="text-lg text-slate-700">
+                ¡Hola <span className="font-semibold text-slate-900">{profile.nombre}</span>! 👋
+              </p>
+              <p className="text-slate-600 mt-1">
+                bienvenido de vuelta a turanchito
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

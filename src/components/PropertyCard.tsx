@@ -11,9 +11,10 @@ import { toast } from 'react-hot-toast'
 interface PropertyCardProps {
   property: Property
   showFavorite?: boolean
+  onFavoriteChange?: (isFavorite: boolean) => void
 }
 
-export function PropertyCard({ property, showFavorite = true }: PropertyCardProps) {
+export function PropertyCard({ property, showFavorite = true, onFavoriteChange }: PropertyCardProps) {
   const [isFavorited, setIsFavorited] = useState(false)
   const [loading, setLoading] = useState(false)
   
@@ -47,10 +48,12 @@ export function PropertyCard({ property, showFavorite = true }: PropertyCardProp
         await favoriteService.removeFromFavorites(property.id)
         setIsFavorited(false)
         toast.success('Eliminado de favoritos')
+        onFavoriteChange?.(false)
       } else {
         await favoriteService.addToFavorites(property.id)
         setIsFavorited(true)
         toast.success('Agregado a favoritos')
+        onFavoriteChange?.(true)
       }
     } catch (error) {
       if (error instanceof Error && error.message.includes('no autenticado')) {

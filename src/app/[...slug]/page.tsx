@@ -1,7 +1,8 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { PropertyCard } from '@/components/PropertyCard'
-import { SearchFilters } from '@/components/SearchFilters'
+import { DynamicPageSearchFilters } from '@/components/DynamicPageSearchFilters'
 import { 
   venezuelanCities, 
   propertyTypes, 
@@ -13,12 +14,12 @@ import { propertyService } from '@/lib/supabase'
 import { Property } from '@/lib/supabase'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string[]
-  }
-  searchParams: {
+  }>
+  searchParams: Promise<{
     page?: string
-  }
+  }>
 }
 
 // Generate static paths for all SEO combinations
@@ -34,7 +35,8 @@ export function generateStaticParams() {
 
 // Generate dynamic metadata for each route
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const slug = params.slug.join('/')
+  const resolvedParams = await params
+  const slug = resolvedParams.slug.join('/')
   
   // Check if it's a city page
   const city = venezuelanCities.find(c => c.slug === slug)
@@ -75,8 +77,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function DynamicPage({ params, searchParams }: PageProps) {
-  const slug = params.slug.join('/')
-  const currentPage = parseInt(searchParams.page || '1')
+  const resolvedParams = await params
+  const resolvedSearchParams = await searchParams
+  const slug = resolvedParams.slug.join('/')
+  const currentPage = parseInt(resolvedSearchParams.page || '1')
   const pageSize = 20
   
   // Check if it's a city page
@@ -100,16 +104,8 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                 Descubre {total} propiedades disponibles en {city.city}
               </p>
               
-              <SearchFilters 
+              <DynamicPageSearchFilters 
                 initialFilters={{ city: city.city, state: city.state }}
-                onSearch={(filters) => {
-                  // Handle search filters
-                  const params = new URLSearchParams()
-                  Object.entries(filters).forEach(([key, value]) => {
-                    if (value) params.append(key, value.toString())
-                  })
-                  window.location.href = `/buscar?${params.toString()}`
-                }}
               />
             </div>
             
@@ -149,12 +145,12 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                 <p className="text-gray-600 mb-6">
                   Actualmente no tenemos propiedades listadas en {city.city}.
                 </p>
-                <a
+                <Link
                   href="/publicar"
                   className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
                 >
                   Publica tu propiedad aquí
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -196,18 +192,11 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                 {total} {propertyTypeLabel?.toLowerCase()} disponibles para {transactionTypeLabel?.toLowerCase()} en {combo.city}, {combo.state}
               </p>
               
-              <SearchFilters 
+              <DynamicPageSearchFilters 
                 initialFilters={{
                   city: combo.city,
                   property_type: combo.propertyType,
                   transaction_type: combo.transactionType
-                }}
-                onSearch={(filters) => {
-                  const params = new URLSearchParams()
-                  Object.entries(filters).forEach(([key, value]) => {
-                    if (value) params.append(key, value.toString())
-                  })
-                  window.location.href = `/buscar?${params.toString()}`
                 }}
               />
             </div>
@@ -248,12 +237,12 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                 <p className="text-gray-600 mb-6">
                   Actualmente no tenemos {propertyTypeLabel?.toLowerCase()} en {transactionTypeLabel?.toLowerCase()} en {combo.city}.
                 </p>
-                <a
+                <Link
                   href="/publicar"
                   className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700"
                 >
                   Publica tu propiedad aquí
-                </a>
+                </Link>
               </div>
             )}
             

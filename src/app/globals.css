@@ -2,7 +2,44 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  
+  /* Paleta principal con #E1F574 como accent */
+  --primary: #E1F574;
+  --primary-hover: #D4ED4A;
+  --primary-light: #F0F9A3;
+  --primary-dark: #C8E635;
+  
+  /* Colores secundarios complementarios */
+  --secondary: #4A90E2;
+  --secondary-hover: #357ABD;
+  --secondary-light: #7BB3F0;
+  
+  /* Neutrales actualizados */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  
+  /* Estados y feedback */
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --error: #ef4444;
+  --error-light: #fee2e2;
+  
+  /* Fondos y bordes */
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f8fafc;
+  --border-light: rgba(226, 232, 240, 0.6);
+  --border-medium: rgba(203, 213, 225, 0.8);
 }
 
 @theme inline {
@@ -14,8 +51,21 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    
+    /* Ajustes para modo oscuro */
+    --primary: #E1F574;
+    --primary-hover: #F0F9A3;
+    --primary-light: #C8E635;
+    
+    --secondary: #7BB3F0;
+    --secondary-hover: #93C5F7;
+    
+    --bg-surface: #1e293b;
+    --bg-surface-hover: #334155;
+    --border-light: rgba(71, 85, 105, 0.6);
+    --border-medium: rgba(100, 116, 139, 0.8);
   }
 }
 

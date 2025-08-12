@@ -25,7 +25,7 @@ export function SearchFilters({ onSearch, initialFilters = {} }: SearchFiltersPr
   const [filters, setFilters] = useState<SearchFilters>(initialFilters)
   const [showAdvanced, setShowAdvanced] = useState(false)
 
-  const handleFilterChange = (key: keyof SearchFilters, value: any) => {
+  const handleFilterChange = (key: keyof SearchFilters, value: string | number | undefined) => {
     const newFilters = { ...filters, [key]: value }
     setFilters(newFilters)
   }

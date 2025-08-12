@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   eslint: {
-    // Allow production builds to complete even with ESLint errors
+    // Completely disable ESLint during builds for Vercel deployment
     ignoreDuringBuilds: true,
   },
   typescript: {

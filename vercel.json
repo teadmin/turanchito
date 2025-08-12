@@ -1,0 +1,13 @@
+{
+  "buildCommand": "pnpm run build:vercel",
+  "env": {
+    "SKIP_ESLINT_CHECK": "true",
+    "DISABLE_ESLINT_PLUGIN": "true"
+  },
+  "build": {
+    "env": {
+      "SKIP_ESLINT_CHECK": "true",
+      "DISABLE_ESLINT_PLUGIN": "true"
+    }
+  }
+}

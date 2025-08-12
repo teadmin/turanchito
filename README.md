@@ -1,36 +1,226 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏠 Miranchito - Plataforma Inmobiliaria de Venezuela
 
-## Getting Started
+Miranchito es una plataforma inmobiliaria moderna y completa enfocada en el mercado venezolano. Construida con Next.js 15, Supabase y Tailwind CSS, ofrece una experiencia de usuario excepcional para la compra, venta y alquiler de propiedades en Venezuela.
 
-First, run the development server:
+## ✨ Características
 
+### 🔍 **SEO Optimizado**
+- Más de 200 páginas optimizadas para ciudades venezolanas
+- URLs amigables: `/comprar-casa-en-caracas`, `/alquilar-apartamento-en-maracay`
+- Meta tags dinámicos para cada ciudad y tipo de propiedad
+- Sitemap automático con todas las combinaciones de búsqueda
+
+### 🏡 **Gestión de Propiedades**
+- Listado completo de propiedades con filtros avanzados
+- Soporte para casas, apartamentos, locales comerciales y terrenos
+- Galería de imágenes con almacenamiento en Supabase
+- Sistema de propiedades destacadas
+- Búsqueda por ubicación, precio, tipo y características
+
+### 👤 **Sistema de Usuarios**
+- Autenticación completa con Supabase Auth
+- Perfiles de usuario personalizables
+- Sistema de favoritos
+- Gestión de propiedades publicadas
+- Historial de búsquedas y actividades
+
+### 🌎 **Cobertura Nacional**
+- Soporte para las 24 estados de Venezuela
+- Más de 200 ciudades y pueblos incluidos
+- Páginas específicas para cada ubicación
+- Datos actualizados de ubicaciones venezolanas
+
+### 📱 **Responsive Design**
+- Diseño móvil-first completamente responsive
+- Interfaz moderna con Tailwind CSS
+- Componentes reutilizables y accesibles
+- Experiencia consistente en todos los dispositivos
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Frontend**: Next.js 15 con App Router
+- **Base de Datos**: Supabase (PostgreSQL)
+- **Autenticación**: Supabase Auth
+- **Almacenamiento**: Supabase Storage
+- **Estilos**: Tailwind CSS
+- **Iconos**: Lucide React
+- **Formularios**: React Hook Form + Zod
+- **Notificaciones**: React Hot Toast
+- **Mapas**: React Leaflet
+- **TypeScript**: Para tipado estático
+
+## 🚀 Instalación y Configuración
+
+### Prerrequisitos
+- Node.js 18 o superior
+- npm, yarn, pnpm o bun
+- Cuenta en Supabase
+
+### 1. Clonar el repositorio
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [repositorio-url]
+cd miranchito
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instalar dependencias
+```bash
+npm install
+# o
+yarn install
+# o
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configurar variables de entorno
+Copia el archivo `.env.example` a `.env.local` y configura:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima_de_supabase
 
-## Learn More
+# Application Configuration
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Configurar Supabase
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Crea un proyecto en [Supabase](https://supabase.com)
+2. Ejecuta el script SQL en `supabase-schema.sql` para crear las tablas
+3. Configura las políticas RLS (Row Level Security)
+4. Crea un bucket llamado `property-images` en Storage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Ejecutar en desarrollo
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+Abre [http://localhost:3000](http://localhost:3000) para ver la aplicación.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 Estructura del Proyecto
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+├── app/                    # App Router de Next.js
+│   ├── [...slug]/         # Páginas dinámicas SEO
+│   ├── buscar/            # Página de búsqueda
+│   ├── login/             # Autenticación
+│   ├── registro/          # Registro de usuarios
+│   └── page.tsx           # Página principal
+├── components/            # Componentes reutilizables
+│   ├── ui/                # Componentes base
+│   ├── PropertyCard.tsx   # Tarjeta de propiedad
+│   ├── SearchFilters.tsx  # Filtros de búsqueda
+│   └── Header.tsx         # Navegación
+├── contexts/              # Contextos de React
+│   └── AuthContext.tsx    # Contexto de autenticación
+├── lib/                   # Utilidades y configuración
+│   ├── supabase.ts        # Cliente de Supabase
+│   ├── utils.ts           # Funciones utilitarias
+│   └── venezuelan-cities-seo.ts # Datos SEO de ciudades
+└── styles/                # Estilos globales
+```
+
+## 🎯 Funcionalidades Principales
+
+### Búsqueda Avanzada
+- Filtro por tipo de propiedad (casa, apartamento, comercial, terreno)
+- Filtro por tipo de transacción (venta, alquiler)
+- Filtro por ubicación (estado, ciudad)
+- Filtro por precio (mín/máx)
+- Filtro por características (habitaciones, baños, área)
+- Búsqueda por texto libre
+
+### Sistema de Favoritos
+- Guardar propiedades favoritas
+- Lista personal de favoritos
+- Acceso rápido desde el menú de usuario
+
+### Gestión de Propiedades
+- Publicar nuevas propiedades
+- Editar propiedades existentes
+- Subir múltiples imágenes
+- Gestionar estado (activa, vendida, inactiva)
+
+### SEO y Performance
+- Páginas estáticas generadas para mejor SEO
+- Imágenes optimizadas con Next.js Image
+- Lazy loading de componentes
+- Sitemap automático
+- Meta tags dinámicos
+
+## 🌐 Ciudades Soportadas
+
+Miranchito incluye soporte completo para:
+
+- **24 Estados**: Todos los estados de Venezuela
+- **200+ Ciudades**: Principales ciudades y pueblos
+- **SEO Optimizado**: Páginas específicas para cada ubicación
+
+### Estados incluidos:
+- Distrito Capital (Caracas)
+- Miranda (Los Teques, Guarenas, Guatire)
+- Zulia (Maracaibo, Cabimas)
+- Carabobo (Valencia, Puerto Cabello)
+- Aragua (Maracay, La Victoria)
+- Y muchos más...
+
+## 🔧 Scripts Disponibles
+
+```bash
+# Desarrollo
+npm run dev
+
+# Construcción para producción
+npm run build
+
+# Iniciar en producción
+npm run start
+
+# Linting
+npm run lint
+```
+
+## 🚀 Despliegue
+
+### Vercel (Recomendado)
+1. Conecta tu repositorio con Vercel
+2. Configura las variables de entorno
+3. Despliega automáticamente
+
+### Variables de Entorno en Producción
+```bash
+NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase_produccion
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima_produccion
+NEXT_PUBLIC_APP_URL=https://miranchito.com
+```
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crea tu rama de feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit tus cambios (`git commit -m 'Agregar nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) para más detalles.
+
+## 🆘 Soporte
+
+Si necesitas ayuda:
+
+- 📧 Email: soporte@miranchito.com
+- 💬 Crear un Issue en GitHub
+- 📱 WhatsApp: +58 XXX-XXXXXXX
+
+## 🎉 Acknowledgments
+
+- Inspirado en Idealista.com para el mercado venezolano
+- Construido con amor para Venezuela 🇻🇪
+- Gracias a la comunidad de desarrolladores venezolanos
+
+---
+
+**Miranchito** - *Tu hogar en Venezuela* 🏠🇻🇪

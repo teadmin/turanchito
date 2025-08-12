@@ -4,13 +4,14 @@ import { propertyService, Property } from '@/lib/supabase'
 import { PropertyDetail } from '@/components/PropertyDetail'
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
 // Generate metadata for the property
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params
   let property: Property | null = null
   
   try {
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       }
     }
 
-    property = await propertyService.getPropertyById(params.id)
+    property = await propertyService.getPropertyById(resolvedParams.id)
   } catch (error) {
     console.error('Error fetching property for metadata:', error)
   }
@@ -65,6 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function PropertyPage({ params }: PageProps) {
+  const resolvedParams = await params
   let property: Property | null = null
 
   try {
@@ -76,7 +78,7 @@ export default async function PropertyPage({ params }: PageProps) {
       // Use mock property for development
       console.warn('⚠️ Supabase not configured, using mock property')
       property = {
-        id: params.id,
+        id: resolvedParams.id,
         title: 'hermosa casa en las mercedes',
         description: 'espectacular casa de 4 habitaciones con piscina, jardín y garaje para 2 carros. ubicada en la exclusiva zona de las mercedes, perfecta para familias que buscan comodidad y seguridad.',
         price: 350000,
@@ -104,14 +106,14 @@ export default async function PropertyPage({ params }: PageProps) {
         updated_at: new Date().toISOString(),
       }
     } else {
-      property = await propertyService.getPropertyById(params.id)
+      property = await propertyService.getPropertyById(resolvedParams.id)
     }
   } catch (error) {
     console.error('Error fetching property:', error)
     
     // Fallback to mock property
     property = {
-      id: params.id,
+      id: resolvedParams.id,
       title: 'propiedad de ejemplo',
       description: 'esta es una propiedad de ejemplo para demostración.',
       price: 100000,

@@ -114,7 +114,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       const profileData = await profileService.getProfile()
       setProfile(profileData)
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error loading profile:', error)
       
       // Handle auth errors
@@ -149,7 +149,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             nombre: 'Usuario Demo',
             ciudad: 'Caracas'
           }
-        } as any
+        } as AuthUser
         
         setUser(mockUser)
         setProfile({

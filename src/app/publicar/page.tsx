@@ -231,7 +231,7 @@ export default function PublicarPage() {
                     </label>
                     <select
                       value={form.property_type}
-                      onChange={(e) => setForm(prev => ({ ...prev, property_type: e.target.value as any }))}
+                      onChange={(e) => setForm(prev => ({ ...prev, property_type: e.target.value as 'house' | 'apartment' | 'commercial' | 'land' }))}
                       className="flex h-11 w-full rounded-xl border border-slate-300/60 bg-white/90 backdrop-blur-sm px-4 py-2 text-sm focus:border-lime-400 focus:outline-none focus:ring-2 focus:ring-lime-400/20 transition-all duration-200"
                       required
                     >
@@ -248,7 +248,7 @@ export default function PublicarPage() {
                     </label>
                     <select
                       value={form.transaction_type}
-                      onChange={(e) => setForm(prev => ({ ...prev, transaction_type: e.target.value as any }))}
+                      onChange={(e) => setForm(prev => ({ ...prev, transaction_type: e.target.value as 'sale' | 'rent' }))}
                       className="flex h-11 w-full rounded-xl border border-slate-300/60 bg-white/90 backdrop-blur-sm px-4 py-2 text-sm focus:border-lime-400 focus:outline-none focus:ring-2 focus:ring-lime-400/20 transition-all duration-200"
                       required
                     >
@@ -286,7 +286,7 @@ export default function PublicarPage() {
                     <div className="flex">
                       <select
                         value={form.currency}
-                        onChange={(e) => setForm(prev => ({ ...prev, currency: e.target.value as any }))}
+                        onChange={(e) => setForm(prev => ({ ...prev, currency: e.target.value as 'USD' | 'VES' }))}
                         className="flex h-11 w-20 rounded-l-xl border-r-0 border border-slate-300/60 bg-white/90 backdrop-blur-sm px-2 text-sm focus:border-lime-400 focus:outline-none focus:ring-2 focus:ring-lime-400/20 transition-all duration-200"
                       >
                         <option value="USD">$</option>

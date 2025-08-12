@@ -117,10 +117,10 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                   ))}
                 </div>
                 
-                {total > pageSize && (
+                {(total || 0) > pageSize && (
                   <div className="mt-8 flex justify-center">
                     <div className="flex space-x-2">
-                      {Array.from({ length: Math.ceil(total / pageSize) }, (_, i) => (
+                      {Array.from({ length: Math.ceil((total || 0) / pageSize) }, (_, i) => (
                         <a
                           key={i + 1}
                           href={`/${slug}?page=${i + 1}`}
@@ -209,10 +209,10 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                   ))}
                 </div>
                 
-                {total > pageSize && (
+                {(total || 0) > pageSize && (
                   <div className="mt-8 flex justify-center">
                     <div className="flex space-x-2">
-                      {Array.from({ length: Math.ceil(total / pageSize) }, (_, i) => (
+                      {Array.from({ length: Math.ceil((total || 0) / pageSize) }, (_, i) => (
                         <a
                           key={i + 1}
                           href={`/${slug}?page=${i + 1}`}

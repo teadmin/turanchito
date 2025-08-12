@@ -50,9 +50,9 @@ function SearchContent() {
     
     searchParams.forEach((value, key) => {
       if (key === 'price_min' || key === 'price_max' || key === 'bedrooms') {
-        initialFilters[key as keyof SearchFiltersType] = parseInt(value) as any
+        (initialFilters as Record<string, number>)[key] = parseInt(value)
       } else if (value) {
-        initialFilters[key as keyof SearchFiltersType] = value as any
+        (initialFilters as Record<string, string>)[key] = value
       }
     })
     

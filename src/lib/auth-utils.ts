@@ -23,8 +23,9 @@ export function clearAuthTokens() {
   }
 }
 
-export function isAuthError(error: any): boolean {
-  if (!error?.message) return false
+export function isAuthError(error: unknown): boolean {
+  const authError = error as { message?: string }
+  if (!authError?.message) return false
   
   const authErrorMessages = [
     'refresh_token_not_found',
@@ -36,13 +37,13 @@ export function isAuthError(error: any): boolean {
   ]
   
   return authErrorMessages.some(msg => 
-    error.message.toLowerCase().includes(msg.toLowerCase())
+    authError.message?.toLowerCase().includes(msg.toLowerCase())
   )
 }
 
-export function handleAuthError(error: any) {
+export function handleAuthError(error: unknown) {
   if (isAuthError(error)) {
-    console.warn('🔐 Authentication error detected:', error.message)
+    console.warn('🔐 Authentication error detected:', (error as { message?: string })?.message)
     clearAuthTokens()
     
     // Optionally redirect to login

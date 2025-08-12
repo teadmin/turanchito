@@ -144,7 +144,7 @@ export const structuredData = {
   }
 }
 
-export function generatePropertyStructuredData(property: any) {
+export function generatePropertyStructuredData(property: Record<string, unknown>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',

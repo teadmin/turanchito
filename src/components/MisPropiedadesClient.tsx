@@ -333,7 +333,7 @@ export function MisPropiedadesClient() {
                       variant="outline"
                       size="sm"
                       className="flex items-center gap-2"
-                      onClick={() => togglePropertyStatus(property.id, property.status)}
+                      onClick={() => togglePropertyStatus(property.id, property.status === 'active' ? 'active' : 'inactive')}
                     >
                       {property.status === 'active' ? (
                         <>

@@ -149,7 +149,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             nombre: 'Usuario Demo',
             ciudad: 'Caracas'
           }
-        } as AuthUser
+        } as any
         
         setUser(mockUser)
         setProfile({

@@ -4,16 +4,7 @@ import { useEffect, useRef } from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
-
-interface Property {
-  id: string
-  title: string
-  price: number
-  currency: 'VES' | 'USD'
-  latitude: number
-  longitude: number
-  city: string
-}
+import type { Property } from '@/types/property'
 
 interface PropertyMapProps {
   properties: Property[]
@@ -24,7 +15,7 @@ interface PropertyMapProps {
 }
 
 // Fix for default markers in Next.js
-delete (L.Icon.Default.prototype as Record<string, unknown>)._getIconUrl
+delete (L.Icon.Default.prototype as any)._getIconUrl
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',

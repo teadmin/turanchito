@@ -3,6 +3,18 @@
 import { useRouter } from 'next/navigation'
 import { SearchFilters } from '@/components/SearchFilters'
 
+interface SearchFilters {
+  search?: string
+  city?: string
+  state?: string
+  property_type?: string
+  transaction_type?: string
+  price_min?: number
+  price_max?: number
+  bedrooms?: number
+  currency?: 'VES' | 'USD'
+}
+
 interface ComprarSearchFiltersProps {
   initialFilters: {
     transaction_type: string
@@ -19,7 +31,7 @@ interface ComprarSearchFiltersProps {
 export function ComprarSearchFilters({ initialFilters }: ComprarSearchFiltersProps) {
   const router = useRouter()
 
-  const handleSearch = (newFilters: Record<string, string | number>) => {
+  const handleSearch = (newFilters: SearchFilters) => {
     const params = new URLSearchParams()
     
     Object.entries(newFilters).forEach(([key, value]) => {

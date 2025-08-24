@@ -7,6 +7,7 @@ import { Map, Grid, Filter } from 'lucide-react'
 import { PropertyCard } from '@/components/PropertyCard'
 import { SearchForm, SearchFilters } from '@/components/SearchForm'
 import { supabase } from '@/lib/supabase'
+import type { Property, SearchFilters as SearchFiltersType } from '@/types/property'
 
 // Dynamic import to avoid SSR issues with Leaflet
 const PropertyMap = dynamic(
@@ -19,31 +20,13 @@ const PropertyMap = dynamic(
   }
 )
 
-interface Property {
-  id: string
-  title: string
-  price: number
-  currency: 'VES' | 'USD'
-  property_type: 'house' | 'apartment' | 'commercial' | 'land'
-  transaction_type: 'sale' | 'rent'
-  bedrooms?: number
-  bathrooms?: number
-  area_m2?: number
-  city: string
-  state: string
-  address: string
-  latitude?: number
-  longitude?: number
-  images: string[]
-  featured: boolean
-}
 
 export function MapView() {
   const [properties, setProperties] = useState<Property[]>([])
   const [loading, setLoading] = useState(true)
   const [viewMode, setViewMode] = useState<'map' | 'grid'>('map')
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null)
-  const [filters, setFilters] = useState<SearchFilters>({})
+  const [filters, setFilters] = useState<SearchFiltersType>({})
 
   useEffect(() => {
     fetchProperties()
@@ -60,17 +43,24 @@ export function MapView() {
         .not('longitude', 'is', null)
 
       if (filters.city) query = query.eq('city', filters.city)
-      if (filters.propertyType) query = query.eq('property_type', filters.propertyType)
-      if (filters.transactionType) query = query.eq('transaction_type', filters.transactionType)
-      if (filters.minPrice) query = query.gte('price', filters.minPrice)
-      if (filters.maxPrice) query = query.lte('price', filters.maxPrice)
+      if (filters.property_type) query = query.eq('property_type', filters.property_type)
+      if (filters.transaction_type) query = query.eq('transaction_type', filters.transaction_type)
+      if (filters.price_min) query = query.gte('price', filters.price_min)
+      if (filters.price_max) query = query.lte('price', filters.price_max)
       if (filters.bedrooms) query = query.gte('bedrooms', filters.bedrooms)
-      if (filters.bathrooms) query = query.gte('bathrooms', filters.bathrooms)
 
       const { data, error } = await query.limit(100)
 
       if (error) throw error
-      if (data) setProperties(data)
+      if (data) {
+        // Ensure all properties have a description
+        const propertiesWithDescription = data.map(prop => ({
+          ...prop,
+          description: prop.description || prop.title || 'Sin descripción',
+          images: prop.images || []
+        }))
+        setProperties(propertiesWithDescription)
+      }
     } catch (error) {
       console.error('Error fetching properties:', error)
     } finally {
@@ -78,7 +68,7 @@ export function MapView() {
     }
   }
 
-  const handleSearch = (newFilters: SearchFilters) => {
+  const handleSearch = (newFilters: SearchFiltersType) => {
     setFilters(newFilters)
   }
 
@@ -159,15 +149,7 @@ export function MapView() {
                   <div className="lg:col-span-2">
                     <Suspense fallback={<div className="w-full h-96 bg-gray-200 animate-pulse rounded-lg" />}>
                       <PropertyMap
-                        properties={properties.filter(p => p.latitude && p.longitude).map(p => ({
-                          id: p.id,
-                          title: p.title,
-                          price: p.price,
-                          currency: p.currency,
-                          latitude: p.latitude!,
-                          longitude: p.longitude!,
-                          city: p.city
-                        }))}
+                        properties={properties.filter(p => p.latitude && p.longitude)}
                         center={getMapCenter()}
                         height="600px"
                         onPropertySelect={handlePropertySelect}

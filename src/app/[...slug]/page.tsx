@@ -28,7 +28,7 @@ export function generateStaticParams() {
   const cityRoutes = venezuelanCities.map(city => ({ slug: [city.slug] }))
   
   return [
-    ...combinations.map(combo => ({ slug: combo.slug.split('/') })),
+    ...combinations.map(combo => ({ slug: (combo.slug as string).split('/') })),
     ...cityRoutes
   ]
 }
@@ -59,12 +59,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   if (combo) {
     return {
-      title: combo.title,
-      description: combo.description,
-      keywords: combo.keywords,
+      title: combo.title as string,
+      description: combo.description as string,
+      keywords: combo.keywords as string,
       openGraph: {
-        title: combo.title,
-        description: combo.description,
+        title: combo.title as string,
+        description: combo.description as string,
         url: `https://miranchito.com/${combo.slug}`,
       }
     }
@@ -170,9 +170,9 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
     try {
       const { properties, total } = await propertyService.searchProperties(
         {
-          city: combo.city,
-          property_type: combo.propertyType,
-          transaction_type: combo.transactionType,
+          city: combo.city as string,
+          property_type: combo.propertyType as string,
+          transaction_type: combo.transactionType as string,
         },
         pageSize,
         (currentPage - 1) * pageSize
@@ -186,17 +186,17 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="mb-8">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                {propertyTypeLabel} en {transactionTypeLabel} en {combo.city}
+                {propertyTypeLabel} en {transactionTypeLabel} en {combo.city as string}
               </h1>
               <p className="text-xl text-gray-600 mb-6">
-                {total} {propertyTypeLabel?.toLowerCase()} disponibles para {transactionTypeLabel?.toLowerCase()} en {combo.city}, {combo.state}
+                {total} {propertyTypeLabel?.toLowerCase()} disponibles para {transactionTypeLabel?.toLowerCase()} en {combo.city as string}, {combo.state as string}
               </p>
               
               <DynamicPageSearchFilters 
                 initialFilters={{
-                  city: combo.city,
-                  property_type: combo.propertyType,
-                  transaction_type: combo.transactionType
+                  city: combo.city as string,
+                  property_type: combo.propertyType as string,
+                  transaction_type: combo.transactionType as string
                 }}
               />
             </div>
@@ -235,7 +235,7 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
                   No hay {propertyTypeLabel?.toLowerCase()} disponibles
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Actualmente no tenemos {propertyTypeLabel?.toLowerCase()} en {transactionTypeLabel?.toLowerCase()} en {combo.city}.
+                  Actualmente no tenemos {propertyTypeLabel?.toLowerCase()} en {transactionTypeLabel?.toLowerCase()} en {combo.city as string}.
                 </p>
                 <Link
                   href="/publicar"
@@ -249,21 +249,21 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
             {/* SEO Content */}
             <div className="mt-12 bg-white rounded-lg p-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                {propertyTypeLabel} en {combo.city}: Tu próximo hogar te espera
+                {propertyTypeLabel} en {combo.city as string}: Tu próximo hogar te espera
               </h2>
               <div className="prose max-w-none text-gray-600">
                 <p>
-                  {combo.city} es una excelente opción para encontrar tu {propertyTypeLabel?.toLowerCase()} ideal. 
+                  {combo.city as string} es una excelente opción para encontrar tu {propertyTypeLabel?.toLowerCase()} ideal. 
                   En Miranchito tenemos una amplia selección de {propertyTypeLabel?.toLowerCase()}s en {transactionTypeLabel?.toLowerCase()} 
                   que se adaptan a diferentes presupuestos y necesidades.
                 </p>
                 <p>
-                  Nuestras {propertyTypeLabel?.toLowerCase()}s en {combo.city} ofrecen las mejores comodidades y 
+                  Nuestras {propertyTypeLabel?.toLowerCase()}s en {combo.city as string} ofrecen las mejores comodidades y 
                   se encuentran en ubicaciones estratégicas. Ya sea que busques una propiedad para vivir 
                   o como inversión, tenemos opciones que te van a encantar.
                 </p>
                 <p>
-                  Explora todas nuestras opciones de {propertyTypeLabel?.toLowerCase()}s en {combo.city} y 
+                  Explora todas nuestras opciones de {propertyTypeLabel?.toLowerCase()}s en {combo.city as string} y 
                   encuentra la propiedad perfecta para ti. ¡Tu nuevo hogar está a solo un clic de distancia!
                 </p>
               </div>

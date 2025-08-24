@@ -190,8 +190,25 @@ export type Database = {
 
 export type Property = Database['public']['Tables']['properties']['Row']
 export type Lead = Database['public']['Tables']['leads']['Row']
-export type Profile = Database['public']['Tables']['profiles']['Row']
-export type Favorite = Database['public']['Tables']['favorites']['Row']
+// export type Profile = Database['public']['Tables']['profiles']['Row']
+// export type Favorite = Database['public']['Tables']['favorites']['Row']
+
+// Temporary types while schema is incomplete
+export interface Profile {
+  id: string
+  nombre: string
+  email: string
+  ciudad: string
+  created_at?: string
+  updated_at?: string
+}
+
+export interface Favorite {
+  id: string
+  user_id: string
+  property_id: string
+  created_at?: string
+}
 
 // Property service
 export const propertyService = {
@@ -335,7 +352,7 @@ export const profileService = {
     return data
   },
 
-  async updateProfile(profileData: Database['public']['Tables']['profiles']['Update']) {
+  async updateProfile(profileData: Partial<Profile>) {
     const { data: { user } } = await supabase.auth.getUser()
     
     if (!user) {

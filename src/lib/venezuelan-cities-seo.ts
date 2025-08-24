@@ -239,7 +239,7 @@ export function generateSEOData(city: string, state: string, propertyType: strin
 
 // Generate all possible SEO combinations for Venezuelan cities
 export function generateAllSEOCombinations() {
-  const combinations = []
+  const combinations: Array<Record<string, unknown>> = []
   
   venezuelanCities.forEach(city => {
     propertyTypes.forEach(property => {

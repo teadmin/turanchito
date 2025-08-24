@@ -148,8 +148,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           user_metadata: {
             nombre: 'Usuario Demo',
             ciudad: 'Caracas'
-          }
-        } as any
+          },
+          app_metadata: {},
+          aud: 'authenticated',
+          created_at: new Date().toISOString()
+        } as User
         
         setUser(mockUser)
         setProfile({

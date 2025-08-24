@@ -9,22 +9,7 @@ import { ContactForm } from '@/components/ContactForm'
 import { Button } from '@/components/ui/Button'
 import { supabase } from '@/lib/supabase'
 import { formatPrice } from '@/lib/utils'
-
-interface Property {
-  id: string
-  title: string
-  price: number
-  currency: 'VES' | 'USD'
-  property_type: 'house' | 'apartment' | 'commercial' | 'land'
-  transaction_type: 'sale' | 'rent'
-  bedrooms?: number
-  bathrooms?: number
-  area_m2?: number
-  city: string
-  state: string
-  images: string[]
-  featured: boolean
-}
+import type { Property } from '@/types/property'
 
 interface CityPropertyPageProps {
   city: string
@@ -86,7 +71,15 @@ export function CityPropertyPage({ city, propertyType, transactionType }: CityPr
       const { data, error } = await query.limit(50)
 
       if (error) throw error
-      if (data) setProperties(data)
+      if (data) {
+        const propertiesWithDefaults = data.map(prop => ({
+          ...prop,
+          description: prop.description || prop.title || 'Sin descripción',
+          address: prop.address || `${prop.city}, ${prop.state}`,
+          images: prop.images || []
+        }))
+        setProperties(propertiesWithDefaults)
+      }
     } catch (error) {
       console.error('Error fetching properties:', error)
     } finally {
@@ -201,7 +194,7 @@ export function CityPropertyPage({ city, propertyType, transactionType }: CityPr
           ) : properties.length > 0 ? (
             <div className={`grid gap-8 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
               {properties.map((property) => (
-                <PropertyCard key={property.id} property={property as any} />
+                <PropertyCard key={property.id} property={property} />
               ))}
             </div>
           ) : (

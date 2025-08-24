@@ -87,7 +87,7 @@ export default function RegistroPage() {
             <Home className="h-8 w-8 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-blue-600">Miranchito</h1>
+            <h1 className="text-2xl font-bold text-blue-600">Turanchito</h1>
           </div>
         </Link>
         

@@ -1,4 +1,4 @@
-# 🚀 Deployment a Vercel - Miranchito
+# 🚀 Deployment a Vercel - Turanchito
 
 ## Estado actual
 ✅ Build local exitoso  
@@ -64,4 +64,4 @@ La plataforma incluye:
 3. Verificar que el mapa funciona en producción
 4. Probar los formularios de búsqueda
 
-¡Tu plataforma inmobiliaria está lista para producción! 🏠🇻🇪
+¡Tu plataforma inmobiliaria Turanchito está lista para producción! 🏠🇻🇪

@@ -1,4 +1,4 @@
-# 🚀 Configuración de Miranchito
+# 🚀 Configuración de Turanchito
 
 ## 1. Configurar Supabase
 
@@ -7,7 +7,7 @@
 2. Crea una cuenta o inicia sesión
 3. Haz clic en "New Project"
 4. Completa los datos:
-   - **Name**: miranchito
+   - **Name**: turanchito
    - **Password**: (elige una contraseña segura)
    - **Region**: South America (São Paulo)
 5. Espera a que se cree el proyecto (1-2 minutos)
@@ -128,4 +128,4 @@ Si tienes problemas, revisa:
 2. Los logs del servidor de desarrollo
 3. El panel de Supabase para errores
 
-¡Ya tienes todo listo para usar Miranchito! 🏠🇻🇪
+¡Ya tienes todo listo para usar Turanchito! 🏠🇻🇪

@@ -1,6 +1,6 @@
-# 🏠 Miranchito - Plataforma Inmobiliaria de Venezuela
+# 🏠 Turanchito - Plataforma Inmobiliaria de Venezuela
 
-Miranchito es una plataforma inmobiliaria moderna y completa enfocada en el mercado venezolano. Construida con Next.js 15, Supabase y Tailwind CSS, ofrece una experiencia de usuario excepcional para la compra, venta y alquiler de propiedades en Venezuela.
+Turanchito es una plataforma inmobiliaria moderna y completa enfocada en el mercado venezolano. Construida con Next.js 15, Supabase y Tailwind CSS, ofrece una experiencia de usuario excepcional para la compra, venta y alquiler de propiedades en Venezuela.
 
 ## ✨ Características
 
@@ -59,7 +59,7 @@ Miranchito es una plataforma inmobiliaria moderna y completa enfocada en el merc
 ### 1. Clonar el repositorio
 ```bash
 git clone [repositorio-url]
-cd miranchito
+cd turanchito
 ```
 
 ### 2. Instalar dependencias
@@ -151,7 +151,7 @@ src/
 
 ## 🌐 Ciudades Soportadas
 
-Miranchito incluye soporte completo para:
+Turanchito incluye soporte completo para:
 
 - **24 Estados**: Todos los estados de Venezuela
 - **200+ Ciudades**: Principales ciudades y pueblos
@@ -192,7 +192,7 @@ npm run lint
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase_produccion
 NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_anonima_produccion
-NEXT_PUBLIC_APP_URL=https://miranchito.com
+NEXT_PUBLIC_APP_URL=https://turanchito.com
 ```
 
 ## 🤝 Contribución
@@ -211,7 +211,7 @@ Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) pa
 
 Si necesitas ayuda:
 
-- 📧 Email: soporte@miranchito.com
+- 📧 Email: soporte@turanchito.com
 - 💬 Crear un Issue en GitHub
 - 📱 WhatsApp: +58 XXX-XXXXXXX
 
@@ -223,4 +223,4 @@ Si necesitas ayuda:
 
 ---
 
-**Miranchito** - *Tu hogar en Venezuela* 🏠🇻🇪
+**Turanchito** - *Tu hogar en Venezuela* 🏠🇻🇪

@@ -42,13 +42,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const city = venezuelanCities.find(c => c.slug === slug)
   if (city) {
     return {
-      title: `Propiedades en ${city.city}, ${city.state} - Miranchito`,
-      description: `Encuentra las mejores propiedades en venta y alquiler en ${city.city}, ${city.state}. Casas, apartamentos y más en Miranchito, tu plataforma inmobiliaria de confianza.`,
+      title: `Propiedades en ${city.city}, ${city.state} - Turanchito`,
+      description: `Encuentra las mejores propiedades en venta y alquiler en ${city.city}, ${city.state}. Casas, apartamentos y más en Turanchito, tu plataforma inmobiliaria de confianza.`,
       keywords: `propiedades ${city.city}, casas ${city.city}, apartamentos ${city.city}, inmuebles ${city.city}, bienes raíces ${city.state}`,
       openGraph: {
-        title: `Propiedades en ${city.city} - Miranchito`,
+        title: `Propiedades en ${city.city} - Turanchito`,
         description: `Descubre las mejores propiedades en ${city.city}, ${city.state}`,
-        url: `https://miranchito.com/${city.slug}`,
+        url: `https://turanchito.com/${city.slug}`,
       }
     }
   }
@@ -65,13 +65,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       openGraph: {
         title: combo.title as string,
         description: combo.description as string,
-        url: `https://miranchito.com/${combo.slug}`,
+        url: `https://turanchito.com/${combo.slug}`,
       }
     }
   }
   
   return {
-    title: 'Página no encontrada - Miranchito',
+    title: 'Página no encontrada - Turanchito',
     description: 'La página que buscas no existe.'
   }
 }
@@ -254,7 +254,7 @@ export default async function DynamicPage({ params, searchParams }: PageProps) {
               <div className="prose max-w-none text-gray-600">
                 <p>
                   {combo.city as string} es una excelente opción para encontrar tu {propertyTypeLabel?.toLowerCase()} ideal. 
-                  En Miranchito tenemos una amplia selección de {propertyTypeLabel?.toLowerCase()}s en {transactionTypeLabel?.toLowerCase()} 
+                  En Turanchito tenemos una amplia selección de {propertyTypeLabel?.toLowerCase()}s en {transactionTypeLabel?.toLowerCase()} 
                   que se adaptan a diferentes presupuestos y necesidades.
                 </p>
                 <p>

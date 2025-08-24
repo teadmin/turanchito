@@ -225,9 +225,9 @@ export function generateSEOData(city: string, state: string, propertyType: strin
     `apartamentos en ${city}`
   ]
 
-  const title = `${transactionLabel === 'venta' ? 'Comprar' : 'Alquilar'} ${propertyLabel} en ${city} - Miranchito`
+  const title = `${transactionLabel === 'venta' ? 'Comprar' : 'Alquilar'} ${propertyLabel} en ${city} - Turanchito`
   
-  const description = `Encuentra las mejores opciones de ${propertyLabel} en ${transactionLabel} en ${city}, ${state}. Miranchito es tu plataforma inmobiliaria de confianza en Venezuela. ¡Descubre tu próximo hogar hoy!`
+  const description = `Encuentra las mejores opciones de ${propertyLabel} en ${transactionLabel} en ${city}, ${state}. Turanchito es tu plataforma inmobiliaria de confianza en Venezuela. ¡Descubre tu próximo hogar hoy!`
 
   return {
     title,

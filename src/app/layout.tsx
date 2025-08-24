@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   alternates: {
-    canonical: 'https://miranchito.com'
+    canonical: 'https://turanchito.com'
   }
 }
 

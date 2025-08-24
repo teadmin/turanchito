@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { venezuelanCities, propertyTypes, transactionTypes, generateAllSEOCombinations } from '@/lib/venezuelan-cities-seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://miranchito.com'
+  const baseUrl = 'https://turanchito.com'
   
   const staticPages = [
     {
